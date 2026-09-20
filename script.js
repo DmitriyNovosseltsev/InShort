@@ -2,16 +2,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ---------------------------------------------------------
-     1. Поддержка команды: синхронизация с Vercel KV + конфетти
+     1. Голосование: синхронизация с Upstash + защита от повтора
      --------------------------------------------------------- */
-  const KEY_VOTED = 'inshort_has_voted';
+  const KEY_VOTED = 'inshort_has_voted_v2';
   const ballots = document.querySelectorAll('[data-vote]');
   const countDisplays = document.querySelectorAll('[data-vote-count]');
   const status = document.querySelector('[data-vote-status]');
 
   let hasVoted = localStorage.getItem(KEY_VOTED) === 'true';
+  let currentVotes = 0;
 
   function updateUI(count) {
+    currentVotes = count;
     countDisplays.forEach(el => {
       el.textContent = count;
     });
@@ -34,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updateUI(data.count);
       }
     } catch (e) {
-      console.warn('Оффлайн-режим счётчика:', e);
+      console.warn('Ошибка подключения к базе:', e);
     }
   }
 
@@ -59,11 +61,14 @@ document.addEventListener('DOMContentLoaded', () => {
   ballots.forEach((ballot) => {
     ballot.addEventListener('click', async () => {
       if (!hasVoted) {
+        // Фиксируем голос локально на этом устройстве
         hasVoted = true;
         localStorage.setItem(KEY_VOTED, 'true');
+        updateUI(currentVotes + 1);
         celebrate(ballot, true);
         if (status) status.textContent = 'Спасибо! Вы поддержали команду.';
 
+        // Отправляем голос в общую базу данных
         try {
           const res = await fetch('/api/vote', { method: 'POST' });
           if (res.ok) {
@@ -71,9 +76,10 @@ document.addEventListener('DOMContentLoaded', () => {
             updateUI(data.count);
           }
         } catch (e) {
-          console.error('Ошибка отправки голоса:', e);
+          console.error('Ошибка записи голоса:', e);
         }
       } else {
+        // Повторный клик с этого же устройства — только салют, счётчик не растёт
         celebrate(ballot, false);
       }
     });
@@ -98,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setMenu(false); });
 
   /* ---------------------------------------------------------
-     3. Портрет: запасной вариант без фото и лёгкий 3D-наклон
+     3. Портрет: 3D-наклон
      --------------------------------------------------------- */
   const portrait = document.querySelector('.portrait');
   const photo = portrait.querySelector('.portrait__img');

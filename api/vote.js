@@ -22,8 +22,8 @@ export default async function handler(request, response) {
     });
   }
 
-  const KEY = 'inshort_real_votes';
-  const BASE_VOTES = 154;
+  const KEY = 'inshort_real_votes_v2';
+  const BASE_VOTES = 0;
 
   async function runRedisCommand(command, ...args) {
     const res = await fetch(`${url}/${command}/${args.map(encodeURIComponent).join('/')}`, {
