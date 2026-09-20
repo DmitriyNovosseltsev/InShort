@@ -7,18 +7,24 @@ export default async function handler(request, response) {
     return response.status(200).end();
   }
 
-  // Переменные окружения, которые автоматически добавил Upstash
-  const url = process.env.UPSTASH_REDIS_REST_URL;
-  const token = process.env.UPSTASH_REDIS_REST_TOKEN;
+  // Автоматический поиск URL и TOKEN среди созданных переменных Upstash
+  const envKeys = Object.keys(process.env);
+  const urlKey = envKeys.find(k => k.includes('UPSTASH') && (k.includes('REST_URL') || k.includes('API_URL') || k.includes('KV_URL')));
+  const tokenKey = envKeys.find(k => k.includes('UPSTASH') && (k.includes('REST_TOKEN') || k.includes('_TOKEN')) && !k.includes('READ_ONLY'));
+
+  const url = process.env[urlKey];
+  const token = process.env[tokenKey];
 
   if (!url || !token) {
-    return response.status(500).json({ error: 'База Upstash не подключена к проекту' });
+    return response.status(500).json({ 
+      error: 'Не найдены ключи Upstash', 
+      foundKeys: envKeys.filter(k => k.includes('UPSTASH')) 
+    });
   }
 
   const KEY = 'inshort_real_votes';
   const BASE_VOTES = 154;
 
-  // Вспомогательная функция для отправки команд в Redis по REST API
   async function runRedisCommand(command, ...args) {
     const res = await fetch(`${url}/${command}/${args.map(encodeURIComponent).join('/')}`, {
       headers: {
