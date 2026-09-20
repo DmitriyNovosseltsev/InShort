@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IN SHORT — Парламент нового поколения | Калжигит Айлинн</title>
+  <meta name="description" content="Новая эра школьного самоуправления. Калжигит Айлинн, школа-гимназия №17 имени Акана Курманова, Астана: меньше слов, больше дела." />
+  <meta name="theme-color" content="#f2f5f7" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@300;400;500;600&family=Lora:ital,wght@1,400;1,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+  <!-- Спрайт иконок -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-chat" viewBox="0 0 24 24"><path d="M20.5 12a8 8 0 0 1-11.7 7.1L3.5 20.5l1.4-4.9A8 8 0 1 1 20.5 12Z"/><path d="M8.5 11.5h7M8.5 14.5h4"/></symbol>
+      <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 21.5h4"/><path d="M12 2.5a6.5 6.5 0 0 0-3.9 11.7c.6.5.9 1.2.9 1.8v.5h6V16c0-.6.3-1.3.9-1.8A6.5 6.5 0 0 0 12 2.5Z"/></symbol>
+      <symbol id="i-cap" viewBox="0 0 24 24"><path d="M22 9.5 12 4.5 2 9.5l10 5 10-5Z"/><path d="M6 12v4.5c3 2.2 9 2.2 12 0V12M22 9.5V15"/></symbol>
+      <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M7 4h10v5a5 5 0 0 1-10 0V4Z"/><path d="M17 5.5h3V7a3 3 0 0 1-3 3M7 5.5H4V7a3 3 0 0 0 3 3"/><path d="M12 14v4M8 21h8M9.5 18h5"/></symbol>
+      <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3M9 21h6"/></symbol>
+      <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M8 3v4M16 3v4M3.5 10h17"/></symbol>
+      <symbol id="i-scale" viewBox="0 0 24 24"><path d="M12 4v16M7 20h10M5 7h14"/><path d="m5 7-3 7a3 3 0 0 0 6 0L5 7ZM19 7l-3 7a3 3 0 0 0 6 0l-3-7Z"/></symbol>
+      <symbol id="i-ball" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3v18M5.6 5.6c3 3 3 10.8 0 12.8M18.4 5.6c-3 3-3 10.8 0 12.8"/></symbol>
+      <symbol id="i-pad" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="11" rx="5.5"/><path d="M7 10.5v4M5 12.5h4"/><circle cx="16" cy="11.5" r=".9"/><circle cx="18.5" cy="13.5" r=".9"/></symbol>
+      <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14.2c3 .2 5 2.4 5 5.8"/></symbol>
+      <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M5 19c0-8 5-13.5 15-14.5 0 10-5 15.5-13 15.5"/><path d="M5 19c2-5 5-8 9-10"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5 10 17.5 19.5 7"/></symbol>
+      <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
+      <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+    </defs>
+  </svg>
+
+  <a class="skip-link" href="#content">Перейти к содержимому</a>
+
+  <!-- Навигация -->
+  <header class="nav">
+    <div class="container nav__bar">
+      <a class="brand" href="#manifesto" aria-label="IN SHORT — в начало страницы">
+        <span class="brand__name">IN SHORT<i>.</i></span>
+        <span class="brand__sub">Школа-гимназия №17 имени Акана Курманова</span>
+      </a>
+
+      <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Открыть меню">
+        <svg class="icon icon-menu" aria-hidden="true"><use href="#i-menu"/></svg>
+        <svg class="icon icon-close" aria-hidden="true"><use href="#i-close"/></svg>
+      </button>
+
+      <nav id="nav-links" class="nav__links" aria-label="Основное меню">
+        <a href="#manifesto">Манифест</a>
+        <a href="#action-code">Код действия</a>
+        <a href="#debates">Debate Arena</a>
+        <a href="#mentorship">Воркшопы</a>
+        <a href="#drive">Драйв и ресурс</a>
+        <a class="nav__cta" href="#support">Поддержать</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="content">
+
+    <!-- Hero -->
+    <section class="hero" id="manifesto">
+      <div class="container hero__grid">
+
+        <div class="hero__text">
+          <p class="hero__role">Президент парламента, 10 «Л» класс</p>
+
+          <h1 class="hero__name">
+            <span class="line"><span>Калжигит</span></span>
+            <span class="line"><span>Айлинн</span></span>
+          </h1>
+
+          <p class="hero__slogan">IN SHORT: меньше слов, больше дела.</p>
+
+          <blockquote class="hero__voice">
+            <p>Школа — это не просто кабинеты и оценки. Это пространство, где голос каждого звучит без страха быть осмеянным или непонятым. Мы пришли делать реальные дела.</p>
+          </blockquote>
+
+          <div class="hero__actions">
+            <button class="ballot" type="button" data-vote aria-pressed="false">
+              <span class="ballot__box" aria-hidden="true">
+                <svg class="ballot__tick" viewBox="0 0 24 24"><path d="M5 12.5 10 17.5 19.5 7"/></svg>
+              </span>
+              <span class="ballot__label" data-vote-label>Поддержать команду</span>
+              <span class="ballot__count">
+                <strong data-vote-count>0</strong>
+                <span>поддержали</span>
+              </span>
+            </button>
+
+            <a class="text-link" href="#action-code">
+              Смотреть программу
+              <svg class="icon" aria-hidden="true"><use href="#i-down"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <figure class="portrait">
+          <div class="portrait__stage">
+            <div class="portrait__back"></div>
+            <div class="portrait__frame">
+              <img class="portrait__img" src="photo.jpg" alt="Калжигит Айлинн" />
+              <div class="portrait__fallback" aria-hidden="true">АК</div>
+              <div class="portrait__shade"></div>
+              <figcaption class="portrait__caption">
+                <strong>Калжигит Айлинн</strong>
+                <span>От искреннего внимания — к системным переменам</span>
+              </figcaption>
+            </div>
+
+            <div class="stamp" aria-hidden="true">
+              <svg viewBox="0 0 100 100">
+                <defs><path id="stamp-path" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0"/></defs>
+                <text><textPath href="#stamp-path" textLength="232" lengthAdjust="spacing">OFFICIAL CANDIDATE • 2026 •</textPath></text>
+              </svg>
+              <svg class="star" viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9 6.8 19.6l1-5.8L3.5 9.7l5.9-.9Z"/></svg>
+            </div>
+          </div>
+        </figure>
+
+      </div>
+    </section>
+
+    <!-- Код действия -->
+    <section class="section section--white" id="action-code">
+      <div class="container program">
+
+        <div class="section-head">
+          <h2>Код действия парламента</h2>
+          <p>Три механизма, которые начинают работать с первого дня — без бюрократии.</p>
+        </div>
+
+        <ul class="rows">
+
+          <li class="row">
+            <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg></span>
+            <div>
+              <h3>Прямой провод к администрации</h3>
+              <p>Устраняем стену непонимания. Любой запрос учеников сразу попадает на стол руководству школы — без цензуры и пыльных коридоров.</p>
+              <ul class="tags">
+                <li>#СлышатьКаждого</li>
+                <li>#ПарламентВДеле</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="row">
+            <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="#i-bulb"/></svg></span>
+            <div>
+              <h3>Школьный хаб инициатив</h3>
+              <p>Мечтаешь о киноклубе, арт-выставке или дебатном клубе? Мы выбиваем кабинеты, звук, аппаратуру и запускаем мощный промоушен в медиа.</p>
+              <ul class="checklist">
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Кабинеты</li>
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Звук и аппаратура</li>
+                <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Промоушен в медиа</li>
+              </ul>
+              <ul class="tags">
+                <li>#ТвояИдея</li>
+                <li>#КлубыШколы</li>
+                <li>#Действуй</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="row">
+            <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="#i-cap"/></svg></span>
+            <div>
+              <h3>Трамплин в топовые вузы</h3>
+              <p>Интеграция старшеклассников в международные волонтёрские движения, крупные форумы и социальные проекты столицы.</p>
+              <ul class="tags">
+                <li>#CV_Boost</li>
+                <li>#Networking</li>
+              </ul>
+            </div>
+          </li>
+
+        </ul>
+      </div>
+    </section>
+
+    <!-- Debate Arena -->
+    <section class="section section--dark on-dark" id="debates">
+      <div class="container">
+
+        <div class="section-head">
+          <h2>Debate Arena: выездные дерби</h2>
+          <p>Выходим за рамки школы. Сражения аргументов против лучших дебатных лиг столицы.</p>
+        </div>
+
+        <div class="ticket">
+          <div class="ticket__head">
+            <svg class="icon" aria-hidden="true"><use href="#i-cal"/></svg>
+            Межшкольный турнирный календарь
+          </div>
+
+          <div class="ticket__main">
+            <div class="ticket__team ticket__team--home">
+              <small>Сборная школы №17</small>
+              <strong>«IN SHORT»</strong>
+            </div>
+
+            <div class="ticket__vs">
+              <b aria-hidden="true">VS</b>
+              <span class="sr-only">против</span>
+              <span>Товарищеский матч</span>
+            </div>
+
+            <div class="ticket__team">
+              <small>Частные и международные школы</small>
+              <strong>Haileybury Astana и топ-лицеи</strong>
+            </div>
+          </div>
+
+          <div class="ticket__tear" aria-hidden="true"></div>
+
+          <dl class="ticket__facts">
+            <div>
+              <dt>Формат</dt>
+              <dd>APD (американский) и BPD (британский парламентский)</dd>
+            </div>
+            <div>
+              <dt>Локации</dt>
+              <dd>Выездные кампусы и городские залы</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="duo-cols">
+
+          <article>
+            <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="#i-mic"/></svg></span>
+            <h3>Дипломатия и ораторский напор</h3>
+            <p>Учим отстаивать позицию на фактах, быстро находить логические ошибки оппонента и говорить уверенно перед любой аудиторией.</p>
+            <ul class="lines">
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Критическое мышление</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Ораторская харизма</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Дипломатия и стрессоустойчивость</li>
+            </ul>
+          </article>
+
+          <article>
+            <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="#i-trophy"/></svg></span>
+            <h3>Внутренний дебатный кубок</h3>
+            <p>Регулярные тренировки клуба каждую неделю и переходящий кубок дебатов между параллелями школы.</p>
+            <ul class="lines">
+              <li>
+                <svg class="icon" aria-hidden="true"><use href="#i-cal"/></svg>
+                <div><small>Частота</small>2 раза в неделю</div>
+              </li>
+              <li>
+                <svg class="icon" aria-hidden="true"><use href="#i-scale"/></svg>
+                <div><small>Судейство</small>Опытные дебатеры</div>
+              </li>
+            </ul>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Воркшопы -->
+    <section class="section" id="mentorship">
+      <div class="container">
+
+        <div class="section-head">
+          <h2>Воркшопы: IELTS, SAT, ЕНТ</h2>
+          <p>Опыт тех, кто реально сдал на максимум. Никакой теории из интернета — только стратегии и личный путь.</p>
+        </div>
+
+        <h3 class="subhead">Спикеры мастер-классов</h3>
+
+        <div class="scores">
+          <article class="score">
+            <div class="score__num">8.0–8.5</div>
+            <div class="score__exam">IELTS</div>
+            <h4>Спикеры IELTS Masterclass</h4>
+            <p>Лайфхаки Speaking 8.0+, шаблоны и логика Writing Task 2 без заучивания клише.</p>
+          </article>
+
+          <article class="score">
+            <div class="score__num">1400–1500+</div>
+            <div class="score__exam">Digital SAT</div>
+            <h4>Эксперты по SAT</h4>
+            <p>Шорткаты в Desmos, скоростное чтение трудных текстов и распределение минут в модулях.</p>
+          </article>
+
+          <article class="score">
+            <div class="score__num">120+</div>
+            <div class="score__exam">ЕНТ, максимум 140</div>
+            <h4>Обладатели госгрантов</h4>
+            <p>Разбор коварных контекстных заданий, психология тестирования и работа с бланками.</p>
+          </article>
+        </div>
+
+        <div class="format">
+          <div class="format__head">
+            <h3>Формат встреч</h3>
+            <p>Три части: от честного рассказа — к практике и спокойствию перед экзаменом.</p>
+          </div>
+
+          <ol class="steps">
+            <li>
+              <span class="steps__num">1</span>
+              <div>
+                <h4>Разбор реальных ошибок и трудностей</h4>
+                <p>Откровенные истории о том, как преодолеть застой в баллах, сколько времени заняла подготовка и как не выгореть в 11 классе.</p>
+              </div>
+            </li>
+            <li>
+              <span class="steps__num">2</span>
+              <div>
+                <h4>Интерактивный разбор задач на экране</h4>
+                <p>Живой мозговой штурм: решаем самые каверзные задания из реальных тестов вместе со спикером в прямом эфире.</p>
+              </div>
+            </li>
+            <li>
+              <span class="steps__num">3</span>
+              <div>
+                <h4>Стресс-контроль в день экзамена</h4>
+                <p>Техники концентрации, правильный режим сна за 7 дней до теста и преодоление паники на первых вопросах.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Драйв и ресурс -->
+    <section class="section section--white section--flush-bottom" id="drive">
+      <div class="container">
+        <div class="section-head">
+          <h2>Спортивный драйв и ментальный ресурс</h2>
+          <p>Школа должна заряжать энергией, а не истощать. Два полюса нашей экосистемы.</p>
+        </div>
+      </div>
+
+      <div class="split">
+
+        <article class="split__cell split__cell--drive">
+          <div class="split__inner">
+            <span class="zone__tag">Drive zone</span>
+            <h3>Школьная Лига Чемпионов</h3>
+            <p>Сезонные турниры с настоящими кубками, судейством и поддержкой трибун.</p>
+            <ul class="zone-list">
+              <li>
+                <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="#i-ball"/></svg></span>
+                <div>
+                  <strong>Различные виды спорта</strong>
+                  <span>Межклассовые турниры, статистика лучших игроков.</span>
+                </div>
+              </li>
+              <li>
+                <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="#i-pad"/></svg></span>
+                <div>
+                  <strong>Киберарена</strong>
+                  <span>Школьные кибертурниры.</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="split__cell split__cell--calm">
+          <div class="split__inner">
+            <span class="zone__tag">Resource zone</span>
+            <h3>Мост доверия</h3>
+            <p>Безопасная гавань на базе методологии Y-PEER — без стыда и осуждения.</p>
+            <ul class="zone-list">
+              <li>
+                <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="#i-users"/></svg></span>
+                <div>
+                  <strong>Формат Peer-to-Peer</strong>
+                  <span>Обсуждение волнующих тем на равных, где ценно мнение каждого.</span>
+                </div>
+              </li>
+              <li>
+                <span class="icon-badge"><svg class="icon" aria-hidden="true"><use href="#i-leaf"/></svg></span>
+                <div>
+                  <strong>Антистресс перед СОР/СОЧ</strong>
+                  <span>Практики эмоциональной разгрузки и уверенности в своих силах.</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Призыв -->
+    <section class="cta" id="support">
+      <div class="container cta__grid">
+        <div>
+          <h2>Согласен с программой? Поддержи команду.</h2>
+          <p>0% воды, 100% действия.</p>
+        </div>
+
+        <button class="ballot" type="button" data-vote aria-pressed="false">
+          <span class="ballot__box" aria-hidden="true">
+            <svg class="ballot__tick" viewBox="0 0 24 24"><path d="M5 12.5 10 17.5 19.5 7"/></svg>
+          </span>
+          <span class="ballot__label" data-vote-label>Поддержать команду</span>
+          <span class="ballot__count">
+            <strong data-vote-count>0</strong>
+            <span>поддержали</span>
+          </span>
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Подвал -->
+  <footer class="footer on-dark">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <strong>IN SHORT<i>.</i></strong>
+        <p>Парламент реальных действий, школа-гимназия №17 имени Акана Курманова</p>
+      </div>
+      <div class="footer__copy">
+        <p>© 2026. Президент школьного парламента: <strong>Калжигит Айлинн</strong></p>
+        <span>От инициативы — к реальным возможностям каждого ученика</span>
+      </div>
+    </div>
+  </footer>
+
+  <p class="sr-only" role="status" data-vote-status></p>
+
+</body>
+</html>
